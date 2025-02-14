@@ -34,5 +34,39 @@ namespace API.Controllers
 
             return Ok(producto);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Productos>> Create([FromBody] Productos producto)
+        {
+            if (producto == null)
+            {
+                return BadRequest();
+            }
+
+            var createProduct = await _repository.Create(producto);
+
+            return CreatedAtAction(nameof(GetById), new { id = createProduct.Id }, createProduct);
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(int id, [FromBody]Productos productos) 
+        {
+            await _repository.Update(id, productos);
+            return Ok();
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await _repository.Delete(id);
+            return Ok();
+        }
+
+
+
+
+
     }
 }

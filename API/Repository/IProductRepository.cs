@@ -9,9 +9,9 @@ namespace API.Repository
         Task<IEnumerable<Productos>> FindAll();
         
         Task<Productos> GetById(int id); 
-        //Task Create(Productos producto);
-        //Task Update (Productos producto);
-        //Task Delete (int id);
+        Task<Productos> Create(Productos producto);
+        Task Update (int id, Productos producto);
+        Task Delete (int id);
 
     }
 }
